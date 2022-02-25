@@ -11,15 +11,13 @@ var circle = document.getElementById("circle"),
 var currentLevel = 0,
   currentPoints = 0;
 
-document.getElementById("start").addEventListener("click", () => {
-  startNewGame();
-});
+document.getElementById("start").addEventListener('click', startNewGame);
 
-document.getElementById("stop").addEventListener("click", () => {
+document.getElementById("stop").addEventListener('click', () => {
   currentLevel = 10;
 });
 
-circle.addEventListener("click", () => {
+circle.addEventListener('click', () => {
   currentPoints += 1;
   points.innerText = currentPoints;
 
@@ -35,25 +33,26 @@ function startNewGame() {
 }
 
 function startLevelUpInterval() {
-  if (currentLevel != 10) {
-    var backgroundColorElementInterval = setInterval(() => {
-      setRandomElementBackgroundColor(circle);
-    }, BACKGROUND_COLOR_INTERVAL_MILLS);
-
-    var randomElementPositionInterval = setInterval(() => {
-      setRandomElementPosition(circle);
-    }, POSTION_INTERVAL_MILLS[currentLevel]);
-
-    setTimeout(() => {
-      clearInterval(backgroundColorElementInterval);
-      clearInterval(randomElementPositionInterval);
-
-      currentLevel += 1;
-      level.innerText = currentLevel + 1;
-
-      startLevelUpInterval();
-    }, LEVEL_TIME_MILLS);
+  if (currentLevel === 10) {
+    return;
   }
+  var backgroundColorElementInterval = setInterval(() => {
+    setRandomElementBackgroundColor(circle);
+  }, BACKGROUND_COLOR_INTERVAL_MILLS);
+
+  var randomElementPositionInterval = setInterval(() => {
+    setRandomElementPosition(circle);
+  }, POSTION_INTERVAL_MILLS[currentLevel]);
+
+  setTimeout(() => {
+    clearInterval(backgroundColorElementInterval);
+    clearInterval(randomElementPositionInterval);
+
+    currentLevel += 1;
+    level.innerText = currentLevel + 1;
+
+    startLevelUpInterval();
+  }, LEVEL_TIME_MILLS);
 }
 
 function setRandomElementBackgroundColor(element) {
@@ -66,7 +65,7 @@ function getRandomColor() {
     g = Math.floor(Math.random() * 255),
     b = Math.floor(Math.random() * 255);
 
-  return "rgb(" + r + "," + g + "," + b + ")";
+  return 'rgb(' + r + ',' + g + ',' + b + ')';
 }
 
 function setRandomElementPosition(element) {
@@ -75,6 +74,6 @@ function setRandomElementPosition(element) {
     x = Math.floor(Math.random() * screenWith),
     y = Math.floor(Math.random() * screenHeight);
 
-  element.style.left = x + "px";
-  element.style.top = y + "px";
+  element.style.left = x + 'px';
+  element.style.top = y + 'px';
 }
