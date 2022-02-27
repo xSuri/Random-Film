@@ -1,20 +1,37 @@
-var POSTION_INTERVAL_MILLS = [
+const POSTION_INTERVAL_MILLS = [
     15000, 13000, 12000, 10000, 9000, 7500, 6500, 4500, 4000, 3000,
   ],
   BACKGROUND_COLOR_INTERVAL_MILLS = 5000,
   LEVEL_TIME_MILLS = 15000;
 
-var circle = document.getElementById("circle"),
+const circle = document.getElementById("circle"),
   points = document.getElementById("points"),
-  level = document.getElementById("level");
+  level = document.getElementById("level"),
+  dialogWindow = document.getElementById("dialogWindow"),
+  confirmBtn = document.getElementById("confirmBtn");
 
-var currentLevel = 0,
-  currentPoints = 0;
+let currentLevel = 0,
+  currentPoints = 0,
+  playerName = 'N/A';
 
-document.getElementById("start").addEventListener('click', startNewGame);
+document.getElementById("start").addEventListener('click', openDialogWindow);
 
 document.getElementById("stop").addEventListener('click', () => {
+  if (localStorage.length === 0) {
+    localStorage.setItem('data', JSON.stringify([]));
+  }
+  let scores = JSON.parse(localStorage.getItem("data"));
+  scores.push(JSON.stringify({ name: playerName, score: currentPoints }));
+
+  localStorage.setItem('data', `${JSON.stringify(scores)}`);
+
   currentLevel = 10;
+  reloadScoreboard();
+});
+
+confirmBtn.addEventListener('click', () => {
+  playerName = document.getElementById("name").value;
+  startNewGame();
 });
 
 circle.addEventListener('click', () => {
@@ -24,6 +41,10 @@ circle.addEventListener('click', () => {
   setRandomElementBackgroundColor(circle);
   setRandomElementPosition(circle);
 });
+
+function openDialogWindow() {
+  dialogWindow.showModal();
+}
 
 function startNewGame() {
   currentLevel = 0;
@@ -36,11 +57,11 @@ function startLevelUpInterval() {
   if (currentLevel === 10) {
     return;
   }
-  var backgroundColorElementInterval = setInterval(() => {
+  let backgroundColorElementInterval = setInterval(() => {
     setRandomElementBackgroundColor(circle);
   }, BACKGROUND_COLOR_INTERVAL_MILLS);
 
-  var randomElementPositionInterval = setInterval(() => {
+  let randomElementPositionInterval = setInterval(() => {
     setRandomElementPosition(circle);
   }, POSTION_INTERVAL_MILLS[currentLevel]);
 
@@ -56,12 +77,11 @@ function startLevelUpInterval() {
 }
 
 function setRandomElementBackgroundColor(element) {
-  var elementColor = getRandomColor();
-  element.style.backgroundColor = elementColor;
+  element.style.backgroundColor = getRandomColor();
 }
 
 function getRandomColor() {
-  var r = Math.floor(Math.random() * 255),
+  let r = Math.floor(Math.random() * 255),
     g = Math.floor(Math.random() * 255),
     b = Math.floor(Math.random() * 255);
 
@@ -69,7 +89,7 @@ function getRandomColor() {
 }
 
 function setRandomElementPosition(element) {
-  var screenWith = window.innerWidth,
+  let screenWith = window.innerWidth,
     screenHeight = window.innerHeight,
     x = Math.floor(Math.random() * screenWith),
     y = Math.floor(Math.random() * screenHeight);

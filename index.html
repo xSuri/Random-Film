@@ -24,8 +24,12 @@
                 .container .stats{
                     float: right;
                     width: 20%;
-                    border-color: white;
                 } 
+
+                .container #scoreboard{
+                    /* float: right; */
+                    width: 100%;
+                }
 
                 .circle{
                     position: absolute;
@@ -54,14 +58,42 @@
 
                     <button id="start">start</button>
                     <button id="stop">stop</button>
+                    
+                    <div>
+                        <p>Scoreboard:</p>
+                        <div id="scoreboard"></div>
+                    </div>
+                    
 
                 </div>
 
+                
+
             </div>
+
+
+            <dialog id="dialogWindow">
+
+                <form method="dialog">
+
+                    <p>Write your name:</p>
+
+                    <input type="text" id="name">
+
+                    <menu>
+
+                        <button id="confirmBtn" value="default">Confirm</button>
+
+                    </menu>
+
+                </form>
+
+            </dialog>
 
    
         </body>
         
         <script src="./main.js"></script>
+        <script src="./scoreboard.js"></script>
 
     </html>
