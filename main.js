@@ -17,13 +17,13 @@ let currentLevel = 0,
 
 
 initScore();
-getTopFiveScores();
+reloadScoreboard();
 
 document.getElementById("start").addEventListener('click', openDialogWindow);
 
 document.getElementById("stop").addEventListener('click', () => {
   saveCurrentUserScore(currentPoints);
-  getTopFiveScores();
+  reloadScoreboard();
   currentLevel = 10;
 });
 

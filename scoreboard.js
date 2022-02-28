@@ -16,13 +16,16 @@ function saveCurrentUserScore(newScore) {
 }
 
 function getTopFiveScores() {
-  scoreboard.innerText = '';
-
   const sortedScores = scores.sort((a, b) => {
     return b.score - a.score;
   });
 
-  const firstFive = sortedScores.slice(0, 5);
+  return sortedScores.slice(0, 5);
+}
+
+function reloadScoreboard() {
+  scoreboard.innerText = '';
+  const firstFive = getTopFiveScores()
 
   firstFive.forEach(element => {
     scoreboard.innerText += `${element.name} : ${element.score} \n`;
