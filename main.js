@@ -8,7 +8,7 @@ const circle = document.getElementById("circle"),
   points = document.getElementById("points"),
   level = document.getElementById("level"),
   dialogWindow = document.getElementById("dialogWindow"),
-  confirmBtn = document.getElementById("confirmBtn");
+  dialogConfirmButton = document.getElementById("dialogConfirmButton");
 
 let currentLevel = 0,
   currentPoints = 0,
@@ -27,7 +27,7 @@ document.getElementById("stop").addEventListener('click', () => {
   currentLevel = 10;
 });
 
-confirmBtn.addEventListener('click', () => {
+dialogConfirmButton.addEventListener('click', () => {
   playerName = document.getElementById("name").value;
   dialogWindow.close();
   startNewGame();
@@ -71,7 +71,7 @@ function startLevelUpInterval() {
     clearInterval(randomElementPositionInterval);
 
     currentLevel += 1;
-    level.innerText = currentLevel + 1;
+    level.innerText = currentLevel;
 
     startLevelUpInterval();
   }, LEVEL_TIME_MILLS);
