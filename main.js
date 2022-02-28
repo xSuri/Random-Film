@@ -4,11 +4,11 @@ const POSTION_INTERVAL_MILLS = [
   BACKGROUND_COLOR_INTERVAL_MILLS = 5000,
   LEVEL_TIME_MILLS = 15000;
 
-const circle = document.getElementById("circle"),
-  points = document.getElementById("points"),
-  level = document.getElementById("level"),
-  dialogWindow = document.getElementById("dialogWindow"),
-  dialogConfirmButton = document.getElementById("dialogConfirmButton");
+const circle = document.getElementById('circle'),
+  points = document.getElementById('points'),
+  level = document.getElementById('level'),
+  dialogWindow = document.getElementById('dialogWindow'),
+  dialogConfirmButton = document.getElementById('dialogConfirmButton');
 
 let currentLevel = 0,
   currentPoints = 0,
@@ -19,16 +19,16 @@ let currentLevel = 0,
 initScore();
 reloadScoreboard();
 
-document.getElementById("start").addEventListener('click', openDialogWindow);
+document.getElementById('start').addEventListener('click', openDialogWindow);
 
-document.getElementById("stop").addEventListener('click', () => {
+document.getElementById('stop').addEventListener('click', () => {
   saveCurrentUserScore(currentPoints);
   reloadScoreboard();
   currentLevel = 10;
 });
 
 dialogConfirmButton.addEventListener('click', () => {
-  playerName = document.getElementById("name").value;
+  playerName = document.getElementById('name').value;
   dialogWindow.close();
   startNewGame();
 });
