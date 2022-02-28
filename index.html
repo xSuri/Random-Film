@@ -27,7 +27,6 @@
                 } 
 
                 .container #scoreboard{
-                    /* float: right; */
                     width: 100%;
                 }
 
@@ -74,26 +73,22 @@
 
             <dialog id="dialogWindow">
 
-                <form method="dialog">
+                <p>Write your name:</p>
 
-                    <p>Write your name:</p>
+                <input type="text" id="name">
 
-                    <input type="text" id="name">
+                <menu>
 
-                    <menu>
+                    <button id="confirmBtn" value="default">Confirm</button>
 
-                        <button id="confirmBtn" value="default">Confirm</button>
-
-                    </menu>
-
-                </form>
+                </menu>
 
             </dialog>
 
    
         </body>
         
-        <script src="./main.js"></script>
         <script src="./scoreboard.js"></script>
+        <script src="./main.js"></script>
 
     </html>
