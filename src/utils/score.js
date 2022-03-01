@@ -1,9 +1,9 @@
-import {getStorage, storeStorage} from './local-storage-service';
+import { getItem, setItem } from './local-storage-service';
 
 const scoreboard = document.getElementById('scoreboard');
 
 export function initScore() {
-  const json = getStorage('data') || '[]';
+  const json = getItem('data') || '[]';
   return JSON.parse(json);
 }
 
@@ -15,7 +15,7 @@ export function saveCurrentUserScore(newScore, scores, playerName) {
     userScore = scores[scores.length - 1];
   }
   userScore.score = newScore;
-  storeStorage('data', JSON.stringify(scores))
+  setItem('data', JSON.stringify(scores))
 }
 
 export function reloadScoreboard(scores) {
@@ -30,9 +30,7 @@ export function reloadScoreboard(scores) {
 
 function getTopFiveScores(scores) {
 
-  const sortedScores = scores.sort((a, b) => {
-    return b.score - a.score;
-  });
+  const sortedScores = scores.sort((a, b) => b.score - a.score);
 
   return sortedScores.slice(0, 5);
 }

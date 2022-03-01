@@ -1,7 +1,7 @@
-export function getStorage(key){
+export function getItem(key) {
     return localStorage.getItem(key)
 }
 
-export function storeStorage(key, value){
+export function setItem(key, value) {
     localStorage.setItem(key, value);
 }

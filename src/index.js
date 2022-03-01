@@ -1,17 +1,17 @@
 import './style.css';
 import { initScore, reloadScoreboard, saveCurrentUserScore } from './utils/score';
-import {openDialogWindow, closeDialogWindow } from './utils/dialog'
-import {startNewGame, stopCurrentGame} from './utils/start-game'
-import { setRandomElementPosition, setRandomElementBackgroundColor } from './utils/element-random-changes';
+import { openDialogWindow, closeDialogWindow } from './utils/dialog'
+import { startNewGame, stopCurrentGame } from './utils/start-game'
+import { setRandomElementPosition, setElementRandomBackgroundColor } from './utils/element-random-changes';
 
 const circle = document.getElementById('circle'),
-    points = document.getElementById('points'),
-    dialogConfirmButton = document.getElementById('dialogConfirmButton');
+  points = document.getElementById('points'),
+  dialogConfirmButton = document.getElementById('dialogConfirmButton');
 
 let currentLevel = 0,
-    currentPoints = 0,
-    playerName = 'N/A',
-    scores;
+  currentPoints = 0,
+  playerName = 'N/A',
+  scores;
 
 
 
@@ -27,18 +27,21 @@ document.getElementById('stop').addEventListener('click', () => {
 });
 
 dialogConfirmButton.addEventListener('click', () => {
-  playerName = document.getElementById('name').value;
+  const inputPlayerName = document.getElementById('name').value;
+  playerName = inputPlayerName;
 
   closeDialogWindow();
-  
-  [currentLevel, currentPoints] = startNewGame(currentLevel, currentPoints);
+
+  const [newCurrentLevel, newCurrentPoints] = startNewGame(currentLevel, currentPoints);
+  currentLevel = newCurrentLevel;
+  currentPoints = newCurrentPoints;
 });
 
 circle.addEventListener('click', () => {
   currentPoints += 1;
   points.innerText = currentPoints;
 
-  setRandomElementBackgroundColor(circle);
+  setElementRandomBackgroundColor(circle);
   setRandomElementPosition(circle);
 });
 

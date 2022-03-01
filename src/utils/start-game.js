@@ -1,4 +1,4 @@
-import {setRandomElementBackgroundColor, setRandomElementPosition} from "./element-random-changes";
+import { setElementRandomBackgroundColor, setRandomElementPosition } from "./element-random-changes";
 
 const POSTION_INTERVAL_MILLS = [
     15000, 13000, 12000, 10000, 9000, 7500, 6500, 4500, 4000, 3000,
@@ -20,7 +20,7 @@ export function startNewGame(currentLevel, currentPoints) {
     return [currentLevel, currentPoints];
 }
 
-export function stopCurrentGame(){
+export function stopCurrentGame() {
     continueGame = false;
 }
 
@@ -29,7 +29,7 @@ function startLevelUpInterval(currentLevel) {
         return;
     }
     let backgroundColorElementInterval = setInterval(() => {
-        setRandomElementBackgroundColor(circle);
+        setElementRandomBackgroundColor(circle);
     }, BACKGROUND_COLOR_INTERVAL_MILLS);
 
     let randomElementPositionInterval = setInterval(() => {
