@@ -1,8 +1,9 @@
 import './style.css';
-import { initScore, reloadScoreboard, saveCurrentUserScore } from './utils/score';
-import { openDialogWindow, closeDialogWindow } from './utils/dialog'
-import { startNewGame, stopCurrentGame } from './utils/start-game'
+import { openDialogWindow, closeDialogWindow } from './utils/dialog';
+import { startNewGame, stopCurrentGame } from './utils/start-game';
 import { setRandomElementPosition, setElementRandomBackgroundColor } from './utils/element-random-changes';
+import { getScores, updateScore } from "./utils/server-api-options";
+import { reloadScoreboard } from "./utils/score";
 
 const circle = document.getElementById('circle'),
   points = document.getElementById('points'),
@@ -15,14 +16,22 @@ let currentLevel = 0,
 
 
 
-scores = initScore(scores);
-reloadScoreboard(scores);
+getScores().then(data => {
+  scores = data;
+  reloadScoreboard(scores);
+});
 
 document.getElementById('start').addEventListener('click', openDialogWindow);
 
 document.getElementById('stop').addEventListener('click', () => {
-  saveCurrentUserScore(currentPoints, scores, playerName);
-  reloadScoreboard(scores);
+  updateScore(currentPoints, playerName);
+
+  getScores().then(data => {
+    scores = data;
+    reloadScoreboard(scores);
+  });
+  
+
   stopCurrentGame();
 });
 

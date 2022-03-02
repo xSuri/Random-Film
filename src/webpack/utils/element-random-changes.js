@@ -1,4 +1,4 @@
-import { getRandomColor } from './random-color'
+import { getRandomColor } from './random-color';
 
 export function setRandomElementPosition(element) {
     let screenWith = window.innerWidth,

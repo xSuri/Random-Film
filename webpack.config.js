@@ -3,7 +3,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
     entry: {
-        app: ['./src/index.js']
+        app: ['./src/webpack/index.js']
     },
     output: {
         path: path.resolve(__dirname, 'build'),
@@ -20,6 +20,13 @@ module.exports = {
     },
     plugins: [new HtmlWebpackPlugin({
         title: 'Circle',
-        template: 'src/index.html'
-    })]
+        template: 'src/webpack/index.html'
+    })],
+    devServer: {
+        proxy: {
+            '/api': {
+                target: 'http://localhost:3000'
+            }
+        }
+    }
 };
