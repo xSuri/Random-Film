@@ -20,6 +20,7 @@
   },
   "dependencies": {
     "express": "^4.17.3",
+    "pure-css-loader": "^3.3.3",
     "randomcolor": "^0.6.2",
     "unique-names-generator": "^4.7.1"
   }

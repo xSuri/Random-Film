@@ -1,9 +1,18 @@
+import { showLoader, hideLoader } from './loader';
+
 export function fetchGet(url) {
+    showLoader();
+
     return fetch(url)
-        .then(response => response.json());
+        .then((res) => {
+            hideLoader();
+            return res.json()
+        });
 }
 
 export function fetchPut(url, body) {
+    showLoader();
+
     fetch(url, {
         method: 'PUT',
         headers: {
@@ -11,9 +20,18 @@ export function fetchPut(url, body) {
         },
         body: body,
     })
+        .then(() => {
+            hideLoader();
+        })
+        .catch((err) => {
+            hideLoader();
+            throw err;
+        })
 }
 
 export function fetchPost(url, body) {
+    showLoader();
+
     return fetch(url, {
         method: 'POST',
         headers: {
@@ -21,5 +39,8 @@ export function fetchPost(url, body) {
         },
         body: body,
     })
-        .then(response => response.json());
+        .then((res) => {
+            hideLoader();
+            return res.json()
+        });
 }

@@ -18,10 +18,8 @@ function getRandomPlayerName(input, confirmButton) {
     input.disabled = true;
     confirmButton.disabled = true;
 
-    //start load
     fetchGet('/api/getRandomPlayerName')
         .then((res) => {
-            // stop load
             input.value = res[0];
             input.disabled = false;
             confirmButton.disabled = false;

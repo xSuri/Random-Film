@@ -1,4 +1,5 @@
-import './style.css';
+import './css/style.css';
+import './css/loader.css';
 import { openDialogWindow, closeDialogWindow } from './utils/dialog';
 import { startNewGame, stopCurrentGame } from './utils/start-game';
 import { setRandomElementPosition, setElementRandomBackgroundColor } from './utils/element-random-changes';
