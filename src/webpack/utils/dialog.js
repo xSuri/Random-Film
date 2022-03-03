@@ -23,5 +23,5 @@ function getRandomPlayerName(input, confirmButton) {
             input.value = res[0];
             input.disabled = false;
             confirmButton.disabled = false;
-        })
+        });
 }

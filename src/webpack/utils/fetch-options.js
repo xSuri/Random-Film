@@ -26,7 +26,7 @@ export function fetchPut(url, body) {
         .catch((err) => {
             hideLoader();
             throw err;
-        })
+        });
 }
 
 export function fetchPost(url, body) {

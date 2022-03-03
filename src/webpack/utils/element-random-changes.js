@@ -9,7 +9,7 @@ export function setRandomElementPosition(element) {
             let [x, y] = res;
             element.style.left = x + 'px';
             element.style.top = y + 'px';
-        })
+        });
 }
 
 
@@ -17,5 +17,5 @@ export function setElementRandomBackgroundColor(element) {
     fetchGet('/api/getRandomColor')
         .then((res) => {
             element.style.backgroundColor = res[0];
-        })
+        });
 }  
