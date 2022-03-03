@@ -12,3 +12,14 @@ export function fetchPut(url, body) {
         body: body,
     })
 }
+
+export function fetchPost(url, body) {
+    return fetch(url, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: body,
+    })
+        .then(response => response.json());
+}

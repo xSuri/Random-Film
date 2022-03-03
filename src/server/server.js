@@ -4,6 +4,10 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const randomColor = require('./utils/random-color');
+const randomPosition = require('./utils/random-position');
+const randomPlayerName = require('./utils/random-player-name');
+
 const PORT = 3000;
 
 let scores = [];
@@ -12,6 +16,21 @@ let scores = [];
 app.get('/api/getTopFiveScores', (req, res) => {
     res.send(getTopFiveScores())
 })
+
+app.get('/api/getRandomColor', (req, res) => {
+    res.send(randomColor.getRandomColor())
+})
+
+app.get('/api/getRandomPlayerName', (req, res) => {
+    res.send(randomPlayerName.getRandomPlayerName())
+})
+
+
+app.post('/api/getRandomPosition', (req, res) => {
+    let screenInfo = req.body;
+    res.send(randomPosition.getRandomPosition(screenInfo.screenWith, screenInfo.screenHeight));
+})
+
 
 app.put('/api/putScore', (req, res) => {
     let newUserScore = req.body;

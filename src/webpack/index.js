@@ -16,7 +16,9 @@ let currentLevel = 0,
 
 changeScoresToNewScore();
 
-document.getElementById('start').addEventListener('click', openDialogWindow);
+document.getElementById('start').addEventListener('click', () => {
+  openDialogWindow();
+});
 
 document.getElementById('stop').addEventListener('click', () => {
   updateScore(currentPoints, playerName);
