@@ -2,8 +2,8 @@ import { getScores } from "./score-api";
 
 const scoreboard = document.getElementById('scoreboard');
 
-export function getNewScoreFromApi() {
-  return getScores().then(data => {
+export function changeScoresToNewScore() {
+  getScores().then(data => {
     reloadScoreboard(data);
   });
 }

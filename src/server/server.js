@@ -16,7 +16,16 @@ app.get('/api/getTopFiveScores', (req, res) => {
 app.put('/api/putScore', (req, res) => {
     let newUserScore = req.body;
 
-    isUserScoreExists(newUserScore.score, newUserScore.name);
+    let userExists = isUserScoreExists(newUserScore.name);
+
+    if (userExists === false) {
+        scores.push(newUserScore);
+    }
+    else if (userExists === true) {
+        let userScore = searchUserScore(newUserScore.name);
+        userScore.score = newUserScore.score;
+    }
+
 
     res.status(200);
     res.send("Insert Record!");
@@ -28,15 +37,19 @@ app.listen(PORT, () => {
 });
 
 
-function isUserScoreExists(newScore, playerName) {
-    let userScore = scores.filter(score => score.name === playerName)[0];
+function isUserScoreExists(playerName) {
+    let userScore = searchUserScore(playerName);
     if (typeof userScore === 'undefined' || userScore === null) {
-        scores.push({ name: playerName });
-        userScore = scores[scores.length - 1];
+        return false;
     }
-    userScore.score = newScore;
+    else {
+        return true;
+    }
 }
 
+function searchUserScore(playerName) {
+    return scores.filter(score => score.name === playerName)[0];
+}
 
 function getTopFiveScores() {
     const sortedScores = scores.sort((a, b) => b.score - a.score);
