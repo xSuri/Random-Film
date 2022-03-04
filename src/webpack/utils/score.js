@@ -12,6 +12,6 @@ function reloadScoreboard(scores) {
   scoreboard.innerText = '';
 
   scores.forEach(element => {
-    scoreboard.innerText += `${element.name} : ${element.score} \n`;
+    scoreboard.innerText += `${element.name} : ${element.points} \n`;
   })
 }
