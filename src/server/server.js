@@ -31,7 +31,7 @@ app.get('/api/getTopFiveScores', (req, res) => {
     })
         .then((score) => {
             res.send(score);
-        })
+        });
 })
 
 app.get('/api/getRandomColor', (req, res) => {
