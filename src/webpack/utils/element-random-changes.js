@@ -1,10 +1,10 @@
-import { fetchGet, fetchPost } from "./fetch-options";
+import { get } from "./fetch-options";
 
 export function setRandomElementPosition(element) {
     let screenWith = window.innerWidth,
         screenHeight = window.innerHeight;
 
-    fetchPost('/api/getRandomPosition', JSON.stringify({ screenWith: screenWith, screenHeight: screenHeight }))
+    get(`/api/getRandomPosition/${screenWith}/${screenHeight}`)
         .then((res) => {
             let [x, y] = res;
             element.style.left = x + 'px';
@@ -14,7 +14,7 @@ export function setRandomElementPosition(element) {
 
 
 export function setElementRandomBackgroundColor(element) {
-    fetchGet('/api/getRandomColor')
+    get('/api/getRandomColor')
         .then((res) => {
             element.style.backgroundColor = res[0];
         });

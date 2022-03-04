@@ -1,4 +1,4 @@
-import { fetchGet } from './fetch-options';
+import { get } from './fetch-options';
 
 const dialogWindow = document.getElementById('dialogWindow'),
     nameElement = document.getElementById('name'),
@@ -18,9 +18,11 @@ function setRandomPlayerName(input, confirmButton) {
     input.disabled = true;
     confirmButton.disabled = true;
 
-    fetchGet('/api/getRandomPlayerName')
+    get('/api/getRandomPlayerName')
         .then((res) => {
             input.value = res[0];
+        })
+        .finally(() => {
             input.disabled = false;
             confirmButton.disabled = false;
         });

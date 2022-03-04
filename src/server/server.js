@@ -25,10 +25,9 @@ app.get('/api/getRandomPlayerName', (req, res) => {
     res.send(randomPlayerName.getRandomPlayerName())
 })
 
-
-app.post('/api/getRandomPosition', (req, res) => {
-    let screenInfo = req.body;
-    res.send(randomPosition.getRandomPosition(screenInfo.screenWith, screenInfo.screenHeight));
+app.get('/api/getRandomPosition/:width/:height', (req, res) => {
+    let screenInfo = req.params;
+    res.send(randomPosition.getRandomPosition(screenInfo["width"], screenInfo["height"]));
 })
 
 
