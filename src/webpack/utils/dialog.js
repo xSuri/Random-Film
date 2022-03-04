@@ -6,7 +6,7 @@ const dialogWindow = document.getElementById('dialogWindow'),
 
 export function openDialogWindow() {
     dialogWindow.showModal();
-    getRandomPlayerName(nameElement, dialogConfirmButton);
+    setRandomPlayerName(nameElement, dialogConfirmButton);
 }
 
 export function closeDialogWindow() {
@@ -14,7 +14,7 @@ export function closeDialogWindow() {
 }
 
 
-function getRandomPlayerName(input, confirmButton) {
+function setRandomPlayerName(input, confirmButton) {
     input.disabled = true;
     confirmButton.disabled = true;
 
