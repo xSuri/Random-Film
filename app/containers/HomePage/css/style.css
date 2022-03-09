@@ -1,0 +1,28 @@
+body {
+  position: relative;
+  background-color: black;
+  color: white;
+}
+
+.circle {
+  float: left;
+}
+
+.stats {
+  float: right;
+  width: 20%;
+}
+
+.scoreboard {
+  width: 100%;
+}
+
+.circle {
+  position: absolute;
+  border-radius: 50%;
+  margin: 0px;
+  height: 150px;
+  width: 150px;
+  background-color: white;
+}
+
