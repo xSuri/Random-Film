@@ -12,11 +12,11 @@ export function get(url) {
         });
 }
 
-export function put(url, body) {
+export function post(url, body) {
     showLoader();
 
     fetch(url, {
-        method: 'PUT',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json',
         },
@@ -25,4 +25,19 @@ export function put(url, body) {
         .finally(() => {
             hideLoader();
         });
+}
+
+export function del(url, body) {
+  showLoader();
+
+  fetch(url, {
+      method: 'DELETE',
+      headers: {
+          'Content-Type': 'application/json',
+      },
+      body: body,
+  })
+      .finally(() => {
+          hideLoader();
+      });
 }

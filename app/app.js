@@ -10,7 +10,7 @@ import '@babel/polyfill';
 
 // Import all the third party stuff
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { createRoot } from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { ConnectedRouter } from 'connected-react-router';
 import history from 'utils/history';
@@ -37,9 +37,10 @@ import { translationMessages } from './i18n';
 const initialState = {};
 const store = configureStore(initialState, history);
 const MOUNT_NODE = document.getElementById('app');
+const root = createRoot(MOUNT_NODE);
 
 const render = messages => {
-  ReactDOM.render(
+  root.render(
     <Provider store={store}>
       <LanguageProvider messages={messages}>
         <ConnectedRouter history={history}>
@@ -47,7 +48,6 @@ const render = messages => {
         </ConnectedRouter>
       </LanguageProvider>
     </Provider>,
-    MOUNT_NODE,
   );
 };
 
@@ -56,7 +56,7 @@ if (module.hot) {
   // modules.hot.accept does not accept dynamic dependencies,
   // have to be constants at compile-time
   module.hot.accept(['./i18n', 'containers/App'], () => {
-    ReactDOM.unmountComponentAtNode(MOUNT_NODE);
+    root.unmountComponentAtNode(MOUNT_NODE);
     render(translationMessages);
   });
 }

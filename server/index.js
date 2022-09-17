@@ -13,20 +13,21 @@ const ngrok =
     : false;
 const { resolve } = require('path');
 const app = express();
+var bodyParser = require('body-parser')
 
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 
-const circleApi = require('./circle-api')
+const filmsApi = require('./films-api')
 
-app.get('/api/getTopFiveScores', circleApi.getTopFiveScores);
-app.get('/api/getRandomColor', circleApi.getRandomColor);
-app.get('/api/getRandomPlayerName', circleApi.getRandomPlayerName);
-app.get('/api/getRandomPosition/:width/:height', circleApi.getRandomPosition);
+app.get('/api/getRandomFilm', filmsApi.getRandomFilm);
+app.get('/api/getAllFilms', filmsApi.getAllFilms);
 
-app.put('/api/putScore', circleApi.putScore)
+app.post('/api/postFilm', filmsApi.postFilm)
+
+app.delete('/api/deleteFilm', filmsApi.deleteFilm);
 
 // In production we need to pass these values in instead of relying on webpack
 setup(app, {
